@@ -15,7 +15,7 @@ import os
 
 groq_api_key=os.getenv("GROQ_API_KEY")
 os.environ['GOOGLE_API_KEY']=os.getenv("GOOGLE_API_KEY")
-st.title('gemma model chatbot')
+st.title('Gemma Chatbot for HR Scenario')
 llm=ChatGroq(groq_api_key=groq_api_key,model_name="gemma2-9b-it")
 prompt=ChatPromptTemplate.from_template(
     """
@@ -36,8 +36,8 @@ def vector_embedding():
         st.session_state.final_documents=st.session_state.text_splitter.split_documents(st.session_state.docs)
         st.session_state.vectors=FAISS.from_documents(st.session_state.final_documents, st.session_state.embeddings)
 
-prompt1=st.text_input("What do you want to ask from the documents?")
-if st.button("Creating vector store"):
+prompt1=st.text_input("What do you want to ask about the HR Policy?")
+if st.button("Click to create vector store"):
     vector_embedding()
     st.write("Vector store DB is ready")
 
